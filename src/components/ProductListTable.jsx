@@ -8,6 +8,7 @@ import { fetchProducts } from "../services/mercadoLibreAPI";
 import ProductItemRecord from "./ProductItemRecord";
 import ProductTableHeader from "./ProductTableHeader";
 import Pagination from "./Pagination";
+import Spinner from "./Spinner";
 
 const ProductTableFields = ({ columnNames }) => {
   return (
@@ -45,7 +46,8 @@ const ProductListTable = () => {
   }, [currentPage]);
 
   const getTotalPages = () => Math.ceil(totalProducts / TOTAL_PER_PAGE);
-  const getSliceIndex = (subtract = 0) => (currentPage - subtract) * TOTAL_PER_PAGE;
+  const getSliceIndex = (subtract = 0) =>
+    (currentPage - subtract) * TOTAL_PER_PAGE;
   const changeCurrentPage = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
@@ -58,9 +60,13 @@ const ProductListTable = () => {
               <ProductTableFields columnNames={TABLE_FIELDS} />
             </thead>
             <tbody>
-              {isLoading ? "Cargando..." : products.map((product) => (
-                <ProductItemRecord key={product.id} product={product} />
-              ))}
+              {isLoading ? (
+                <Spinner />
+              ) : (
+                products.map((product) => (
+                  <ProductItemRecord key={product.id} product={product} />
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -68,7 +74,7 @@ const ProductListTable = () => {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-base text-blueGray-700">
-                {getSliceIndex(1) + 1}-{getSliceIndex()} de {totalProducts}{" "}
+                {getSliceIndex(1) + 1}-{getSliceIndex()} de {totalProducts}
                 resultados
               </h3>
             </div>
