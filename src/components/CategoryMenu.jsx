@@ -1,5 +1,5 @@
 const CategoryMenu = () => {
-   return <div>CategoryMenu</div>;
+  return <div>CategoryMenu</div>;
 };
 
 export default CategoryMenu;
