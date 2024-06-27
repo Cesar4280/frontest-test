@@ -46,9 +46,10 @@ const ProductListTable = () => {
   }, [currentPage]);
 
   const getTotalPages = () => Math.ceil(totalProducts / TOTAL_PER_PAGE);
-  const getSliceIndex = (subtract = 0) =>
-    (currentPage - subtract) * TOTAL_PER_PAGE;
+  const getSliceIndex = (subtract = 0) => (currentPage - subtract) * TOTAL_PER_PAGE;
   const changeCurrentPage = (pageNumber) => setCurrentPage(pageNumber);
+
+  
 
   return (
     <div className="w-full mx-auto xl:w-10/12 mb-12 xl:mb-0 px-4 col-span-10">
@@ -60,34 +61,30 @@ const ProductListTable = () => {
               <ProductTableFields columnNames={TABLE_FIELDS} />
             </thead>
             <tbody>
-              {isLoading ? (
-                <Spinner />
-              ) : (
-                products.map((product) => (
-                  <ProductItemRecord key={product.id} product={product} />
-                ))
-              )}
+              {isLoading ? <Spinner /> : products.map((product) => <ProductItemRecord key={product.id} product={product} />)}
             </tbody>
           </table>
         </div>
-        <div className="rounded-t-lg mb-0 px-2 py-3 border-0 text-slate-500 shadow">
-          <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 className="font-semibold text-base text-blueGray-700">
-                {getSliceIndex(1) + 1}-{getSliceIndex()} de {totalProducts}
-                resultados
-              </h3>
-            </div>
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-              <Pagination
-                currentPage={currentPage}
-                totalPages={getTotalPages()}
-                changeCurrentPage={changeCurrentPage}
-                rowSpan={TABLE_FIELDS.length}
-              />
+        {isLoading || (
+          <div className="rounded-t-lg mb-0 px-2 py-3 border-0 text-slate-500 shadow">
+            <div className="flex flex-wrap items-center">
+              <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+                <h3 className="font-semibold text-base text-blueGray-700">
+                  {getSliceIndex(1) + 1}-{getSliceIndex()} de {totalProducts}
+                  resultados
+                </h3>
+              </div>
+              <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={getTotalPages()}
+                  changeCurrentPage={changeCurrentPage}
+                  rowSpan={TABLE_FIELDS.length}
+                />
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
