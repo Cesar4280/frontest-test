@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CategoryMenu from "./components/CategoryMenu";
 import ProductListTable from "./components/ProductListTable";
 
@@ -8,9 +9,12 @@ export default function App() {
    */
 
   return (
-    <div className="container mx-auto">
-      <CategoryMenu />
-      <ProductListTable />
-    </div>
+    <Router>
+      <div className="container mx-auto">
+        <CategoryMenu />
+        <Route path="/" element={<ProductListTable />} />
+        <Route path="/:category_id" element={<ProductList />} />
+      </div>
+    </Router>
   );
 }
