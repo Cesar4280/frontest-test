@@ -1,6 +1,6 @@
 // src/components/CategoryMenu.jsx
 import React, { useState, useEffect } from "react";
-import { fetchCategories } from "../services/mercadoLibreAPI";
+import { fetchProducts } from "../services/mercadoLibreAPI";
 
 const CategoryMenu = ({ onSelectCategory }) => {
   const [categories, setCategories] = useState([]);
@@ -8,7 +8,7 @@ const CategoryMenu = ({ onSelectCategory }) => {
 
   useEffect(() => {
     const loadCategories = async () => {
-      const data = await fetchCategories();
+      const data = await fetchProducts();
       setCategories(data);
     };
     loadCategories();
