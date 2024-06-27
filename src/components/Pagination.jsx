@@ -40,6 +40,7 @@ const Pagination = (props) => {
         <Arrow direction="left" />
       </button>
     );
+
   if (currentPage < totalPages)
     paginationItems.push(
       <button
@@ -52,13 +53,7 @@ const Pagination = (props) => {
       </button>
     );
 
-  return (
-    <tr>
-      <td className="text-slate-600 text-sm" rowSpan={rowSpan}>
-        <div className="flex flex-row justify-center">{paginationItems}</div>
-      </td>
-    </tr>
-  );
+  return <div className="flex flex-row justify-center">{paginationItems}</div>;
 };
 
 export default Pagination;

@@ -29,19 +29,23 @@ const ProductListTable = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(products.length);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const offset = getOffset();
-    fetchProducts(offset).then((data) => {
-      const totalQuantity = data.paging.total;
-      const productsToShow = data.results;
-      setProducts(productsToShow);
-      setTotalProducts(totalQuantity);
-    });
+    setIsLoading(true);
+    const offset = getSliceIndex(1);
+    fetchProducts(offset)
+      .then((data) => {
+        const totalQuantity = data.paging.total;
+        const productsToShow = data.results;
+        setProducts(productsToShow);
+        setTotalProducts(totalQuantity);
+      })
+      .finally(() => setIsLoading(false));
   }, [currentPage]);
 
-  const getOffset = () => (currentPage - 1) * TOTAL_PER_PAGE;
   const getTotalPages = () => Math.ceil(totalProducts / TOTAL_PER_PAGE);
+  const getSliceIndex = (subtract = 0) => (currentPage - subtract) * TOTAL_PER_PAGE;
   const changeCurrentPage = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
@@ -64,7 +68,8 @@ const ProductListTable = () => {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-base text-blueGray-700">
-                {getOffset() + 1} - {getTotalPages()} de {totalProducts} Productos
+                {getSliceIndex(1) + 1}-{getSliceIndex()} de {totalProducts}{" "}
+                resultados
               </h3>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">

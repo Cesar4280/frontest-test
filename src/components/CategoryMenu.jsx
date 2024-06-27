@@ -25,7 +25,7 @@ const CategoryMenu = ({ onSelectCategory }) => {
   };
 
   return (
-    <div className="col-span-2">
+    <div className="col-span-2 text-left text-base/loose text-slate-500">
       {categories.map((category) => (
         <div key={category.id}>
           <button onClick={() => toggleCategory(category.id)}>
@@ -35,7 +35,7 @@ const CategoryMenu = ({ onSelectCategory }) => {
             {category.name}
           </span>
           {expandedCategories[category.id] && (
-            <div className="subcategories">
+            <div className="text-left text-xs/6 text-slate-500">
               {category.children.map((subcategory) => (
                 <div
                   key={subcategory.id}
