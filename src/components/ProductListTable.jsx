@@ -58,7 +58,7 @@ const ProductListTable = () => {
               <ProductTableFields columnNames={TABLE_FIELDS} />
             </thead>
             <tbody>
-              {products.map((product) => (
+              {isLoading ? "Cargando..." : products.map((product) => (
                 <ProductItemRecord key={product.id} product={product} />
               ))}
             </tbody>
