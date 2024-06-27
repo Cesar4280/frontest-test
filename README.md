@@ -26,7 +26,7 @@ Este proyecto es una aplicación de listado de productos desarrollado con React 
 
 ## Instalación
 
-git clone https://github.com/Cesar4280/frontest-test
-cd frontest-test
-npm install
-npm run dev
+- git clone https://github.com/Cesar4280/frontest-test
+- cd frontest-test
+- npm install
+- npm run dev
