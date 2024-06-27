@@ -5,8 +5,6 @@ import {
     DEFAULT_LIMIT
 } from "../config/API";
 
-const BASE_URL = `${MERCADO_LIBRE_API_URL}/sites/${SITE}`;
-
 const fetchMercadoLibre = async (URI = MERCADO_LIBRE_API_URL) => {
     let data = null;
     try {
@@ -24,10 +22,9 @@ const fetchMercadoLibre = async (URI = MERCADO_LIBRE_API_URL) => {
     return data;
 };
 
-const getURI = (offset = 0, limit = 50, categoryId = "") =>
-    `${BASE_URL}/search?seller_id=${SELLER_ID}&${categoryId && `category=${categoryId}&`}offset=${offset}&limit=${limit}`;
+const getURI = (offset = 0, limit = 50, categoryId = "") => `${MERCADO_LIBRE_API_URL}/sites/${SITE}/search?seller_id=${SELLER_ID}&${categoryId && `category=${categoryId}&`}offset=${offset}&limit=${limit}`;
 
-export const fetchProducts = (offset = 0, ) => {
+export const fetchProducts = (offset = 0, limit = DEFAULT_LIMIT) => {
     const productsAccordingToSellerURI = getURI(offset, limit);
     return fetchMercadoLibre(productsAccordingToSellerURI);
 };

@@ -9,7 +9,10 @@ const CategoryMenu = ({ onSelectCategory }) => {
   useEffect(() => {
     const loadCategories = async () => {
       const data = await fetchProducts();
-      setCategories(data);
+      const filters = data.available_filters;
+      const categoryFilter = filters.find(({ id }) => id === "category");
+      const categoryList = categoryFilter.values;
+      setCategories(categoryList);
     };
     loadCategories();
   }, []);
