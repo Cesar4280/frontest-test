@@ -1,0 +1,1 @@
+export const TABLE_FIELDS = [ "Producto ID", "Nombre Producto", "Precio", "Mercado enlace", "Imagen"];
