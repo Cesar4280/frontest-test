@@ -1,7 +1,9 @@
+import { TABLE_FIELDS } from "../config/constans";
+
 const Spinner = () => {
   return (
     <tr className="h-48 text-center">
-      <td colSpan={6}>
+      <td colSpan={TABLE_FIELDS.length}>
         <div role="status">
           <svg
             aria-hidden="true"

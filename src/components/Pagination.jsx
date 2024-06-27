@@ -1,7 +1,7 @@
 import Arrow from "./Arrow";
 
 const Pagination = (props) => {
-  const { totalPages, currentPage, changeCurrentPage, rowSpan } = props;
+  const { totalPages, currentPage, changeCurrentPage } = props;
 
   const changeToNextPage = () => changeCurrentPage(currentPage + 1);
   const changeToPreviousPage = () => changeCurrentPage(currentPage - 1);

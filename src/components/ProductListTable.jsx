@@ -49,8 +49,6 @@ const ProductListTable = () => {
   const getSliceIndex = (subtract = 0) => (currentPage - subtract) * TOTAL_PER_PAGE;
   const changeCurrentPage = (pageNumber) => setCurrentPage(pageNumber);
 
-  
-
   return (
     <div className="w-full mx-auto xl:w-10/12 mb-12 xl:mb-0 px-4 col-span-10">
       <div className="flex flex-col w-full relative min-w-0 break-words mb-6 shadow-lg rounded-2xl bg-white">
@@ -79,7 +77,6 @@ const ProductListTable = () => {
                   currentPage={currentPage}
                   totalPages={getTotalPages()}
                   changeCurrentPage={changeCurrentPage}
-                  rowSpan={TABLE_FIELDS.length}
                 />
               </div>
             </div>
