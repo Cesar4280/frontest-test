@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CategoryMenu from "./components/CategoryMenu";
 import ProductListTable from "./components/ProductListTable";
 
@@ -9,12 +9,20 @@ export default function App() {
    */
 
   return (
-    <Router>
-      <div className="container mx-auto">
+    <div className="container mx-auto mt-10">
+      <div className="grid grid-cols-12">
         <CategoryMenu />
-        <Route path="/" element={<ProductListTable />} />
-        <Route path="/:category_id" element={<ProductList />} />
+        <ProductListTable />
       </div>
-    </Router>
+    </div>
+    // <Router>
+    //   <div className="container mx-auto">
+    //     <CategoryMenu />
+    //     <Routes>
+    //       <Route path="/" element={<ProductListTable />} />
+    //       <Route path="/:category_id" element={<ProductListTable />} />
+    //     </Routes>
+    //   </div>
+    // </Router>
   );
 }

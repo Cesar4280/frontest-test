@@ -31,7 +31,7 @@ const ProductListTable = () => {
   const [totalProducts, setTotalProducts] = useState(products.length);
 
   useEffect(() => {
-    const offset = (currentPage - 1) * TOTAL_PER_PAGE;
+    const offset = getOffset();
     fetchProducts(offset).then((data) => {
       const totalQuantity = data.paging.total;
       const productsToShow = data.results;
@@ -40,11 +40,12 @@ const ProductListTable = () => {
     });
   }, [currentPage]);
 
+  const getOffset = () => (currentPage - 1) * TOTAL_PER_PAGE;
   const getTotalPages = () => Math.ceil(totalProducts / TOTAL_PER_PAGE);
   const changeCurrentPage = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="w-full mx-auto xl:w-10/12 mb-12 xl:mb-0 px-4">
+    <div className="w-full mx-auto xl:w-10/12 mb-12 xl:mb-0 px-4 col-span-10">
       <div className="flex flex-col w-full relative min-w-0 break-words mb-6 shadow-lg rounded-2xl bg-white">
         <ProductTableHeader />
         <div className="block w-full overflow-x-auto">
@@ -57,14 +58,25 @@ const ProductListTable = () => {
                 <ProductItemRecord key={product.id} product={product} />
               ))}
             </tbody>
-            <tfoot></tfoot>
           </table>
         </div>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={getTotalPages()}
-          changeCurrentPage={changeCurrentPage}
-        />
+        <div className="rounded-t-lg mb-0 px-2 py-3 border-0 text-slate-500 shadow">
+          <div className="flex flex-wrap items-center">
+            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+              <h3 className="font-semibold text-base text-blueGray-700">
+                {getOffset() + 1} - {getTotalPages()} de {totalProducts} Productos
+              </h3>
+            </div>
+            <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={getTotalPages()}
+                changeCurrentPage={changeCurrentPage}
+                rowSpan={TABLE_FIELDS.length}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

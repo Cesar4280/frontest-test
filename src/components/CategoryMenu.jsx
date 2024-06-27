@@ -25,7 +25,7 @@ const CategoryMenu = ({ onSelectCategory }) => {
   };
 
   return (
-    <div className="category-menu">
+    <div className="col-span-2">
       {categories.map((category) => (
         <div key={category.id}>
           <button onClick={() => toggleCategory(category.id)}>

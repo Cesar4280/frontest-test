@@ -1,7 +1,7 @@
 import Arrow from "./Arrow";
 
 const Pagination = (props) => {
-  const { totalPages, currentPage, changeCurrentPage } = props;
+  const { totalPages, currentPage, changeCurrentPage, rowSpan } = props;
 
   const changeToNextPage = () => changeCurrentPage(currentPage + 1);
   const changeToPreviousPage = () => changeCurrentPage(currentPage - 1);
@@ -54,7 +54,7 @@ const Pagination = (props) => {
 
   return (
     <tr>
-      <td className="text-slate-600 text-sm" rowSpan={6}>
+      <td className="text-slate-600 text-sm" rowSpan={rowSpan}>
         <div className="flex flex-row justify-center">{paginationItems}</div>
       </td>
     </tr>
